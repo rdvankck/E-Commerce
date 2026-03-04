@@ -92,6 +92,10 @@ pnpm --filter storefront exec playwright test
 └─────────────┘ └───────┘ └───────────────┘
 ```
 
+## Authors
+
+- [rdvankck](https://github.com/rdvankck)
+
 ## License
 
 MIT
