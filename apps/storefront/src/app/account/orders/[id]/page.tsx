@@ -114,9 +114,11 @@ export default function OrderDetailPage() {
   if (!order) {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
-        <Package className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-        <h1 className="text-2xl font-bold text-gray-900">Order not found</h1>
-        <Link href="/account/orders" className="text-primary-600 hover:text-primary-700 mt-4 inline-block">
+        <div className="w-20 h-20 bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
+          <Package className="w-10 h-10 text-gray-500" />
+        </div>
+        <h1 className="text-2xl font-bold text-white">Order not found</h1>
+        <Link href="/account/orders" className="text-brand-400 hover:text-brand-300 mt-4 inline-block transition-colors">
           Back to orders
         </Link>
       </div>
@@ -129,28 +131,28 @@ export default function OrderDetailPage() {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-gray-900">Home</Link>
+        <Link href="/" className="hover:text-white transition-colors">Home</Link>
         <span>/</span>
-        <Link href="/account" className="hover:text-gray-900">Account</Link>
+        <Link href="/account" className="hover:text-white transition-colors">Account</Link>
         <span>/</span>
-        <Link href="/account/orders" className="hover:text-gray-900">Orders</Link>
+        <Link href="/account/orders" className="hover:text-white transition-colors">Orders</Link>
         <span>/</span>
-        <span className="text-gray-900">{order.id}</span>
+        <span className="text-white">{order.id}</span>
       </nav>
 
       <div className="flex items-center gap-4 mb-8">
-        <Link href="/account/orders" className="p-2 hover:bg-gray-100 rounded-lg transition">
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
+        <Link href="/account/orders" className="p-2 hover:bg-gray-800 rounded-xl transition-all">
+          <ArrowLeft className="w-5 h-5 text-gray-400" />
         </Link>
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">{order.id}</h1>
+          <h1 className="text-2xl font-bold text-white">{order.id}</h1>
           <p className="text-gray-500">Placed on {order.date}</p>
         </div>
       </div>
 
       {/* Order Status Timeline */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-6">Order Status</h2>
+      <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-6 mb-6">
+        <h2 className="text-lg font-semibold text-white mb-6">Order Status</h2>
         <div className="relative">
           <div className="flex justify-between">
             {statusSteps.map((step, index) => {
@@ -159,12 +161,12 @@ export default function OrderDetailPage() {
               const isCurrent = index === currentStepIndex;
               return (
                 <div key={step.key} className="flex flex-col items-center relative z-10">
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
-                    isCompleted ? 'bg-green-500 text-white' : 'bg-gray-200 text-gray-400'
-                  } ${isCurrent ? 'ring-4 ring-green-200' : ''}`}>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${
+                    isCompleted ? 'bg-green-500 text-white' : 'bg-gray-800 text-gray-500'
+                  } ${isCurrent ? 'ring-4 ring-green-500/30' : ''}`}>
                     <Icon className="w-6 h-6" />
                   </div>
-                  <p className={`mt-2 text-sm font-medium ${isCompleted ? 'text-green-600' : 'text-gray-400'}`}>
+                  <p className={`mt-2 text-sm font-medium ${isCompleted ? 'text-green-400' : 'text-gray-500'}`}>
                     {step.label}
                   </p>
                 </div>
@@ -172,7 +174,7 @@ export default function OrderDetailPage() {
             })}
           </div>
           {/* Progress line */}
-          <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-200">
+          <div className="absolute top-6 left-0 right-0 h-0.5 bg-gray-800">
             <div
               className="h-full bg-green-500 transition-all duration-500"
               style={{ width: `${(currentStepIndex / (statusSteps.length - 1)) * 100}%` }}
@@ -181,60 +183,62 @@ export default function OrderDetailPage() {
         </div>
 
         {order.trackingNumber && (
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600">Tracking Number</p>
-            <p className="font-mono font-medium text-gray-900">{order.trackingNumber}</p>
+          <div className="mt-6 p-4 bg-gray-800/50 rounded-xl">
+            <p className="text-sm text-gray-400">Tracking Number</p>
+            <p className="font-mono font-medium text-white">{order.trackingNumber}</p>
           </div>
         )}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Items */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Items</h2>
+        <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-6">
+          <h2 className="text-lg font-semibold text-white mb-4">Items</h2>
           <div className="space-y-4">
             {order.items.map((item, index) => (
               <div key={index} className="flex gap-4">
-                <div className="w-16 h-16 bg-gray-100 rounded-lg overflow-hidden">
+                <div className="w-16 h-16 bg-gray-800 rounded-xl overflow-hidden">
                   <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                 </div>
                 <div className="flex-1">
-                  <p className="font-medium text-gray-900">{item.name}</p>
+                  <p className="font-medium text-white">{item.name}</p>
                   <p className="text-sm text-gray-500">Qty: {item.quantity}</p>
                 </div>
-                <p className="font-medium text-gray-900">${(item.price * item.quantity).toFixed(2)}</p>
+                <p className="font-medium text-white">${(item.price * item.quantity).toFixed(2)}</p>
               </div>
             ))}
           </div>
 
-          <div className="border-t border-gray-200 mt-4 pt-4 space-y-2">
+          <div className="border-t border-gray-800 mt-4 pt-4 space-y-2">
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Subtotal</span>
-              <span>${order.subtotal.toFixed(2)}</span>
+              <span className="text-gray-400">Subtotal</span>
+              <span className="text-white">${order.subtotal.toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Shipping</span>
-              <span>{order.shipping === 0 ? 'FREE' : `$${order.shipping.toFixed(2)}`}</span>
+              <span className="text-gray-400">Shipping</span>
+              <span className={order.shipping === 0 ? 'text-green-400' : 'text-white'}>
+                {order.shipping === 0 ? 'FREE' : `$${order.shipping.toFixed(2)}`}
+              </span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-gray-600">Tax</span>
-              <span>${order.tax.toFixed(2)}</span>
+              <span className="text-gray-400">Tax</span>
+              <span className="text-white">${order.tax.toFixed(2)}</span>
             </div>
-            <div className="flex justify-between font-bold text-lg pt-2 border-t border-gray-200">
-              <span>Total</span>
-              <span className="text-primary-600">${order.total.toFixed(2)}</span>
+            <div className="flex justify-between font-bold text-lg pt-2 border-t border-gray-800">
+              <span className="text-white">Total</span>
+              <span className="text-brand-400">${order.total.toFixed(2)}</span>
             </div>
           </div>
         </div>
 
         {/* Shipping & Payment Info */}
         <div className="space-y-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-6">
             <div className="flex items-center gap-2 mb-4">
-              <MapPin className="w-5 h-5 text-gray-400" />
-              <h2 className="text-lg font-semibold text-gray-900">Shipping Address</h2>
+              <MapPin className="w-5 h-5 text-brand-400" />
+              <h2 className="text-lg font-semibold text-white">Shipping Address</h2>
             </div>
-            <p className="text-gray-600">
+            <p className="text-gray-400">
               {order.shippingAddress.firstName} {order.shippingAddress.lastName}<br />
               {order.shippingAddress.address1}<br />
               {order.shippingAddress.address2 && <>{order.shippingAddress.address2}<br /></>}
@@ -243,12 +247,12 @@ export default function OrderDetailPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+          <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-6">
             <div className="flex items-center gap-2 mb-4">
-              <CreditCard className="w-5 h-5 text-gray-400" />
-              <h2 className="text-lg font-semibold text-gray-900">Payment Method</h2>
+              <CreditCard className="w-5 h-5 text-brand-400" />
+              <h2 className="text-lg font-semibold text-white">Payment Method</h2>
             </div>
-            <p className="text-gray-600">{order.paymentMethod}</p>
+            <p className="text-gray-400">{order.paymentMethod}</p>
           </div>
         </div>
       </div>

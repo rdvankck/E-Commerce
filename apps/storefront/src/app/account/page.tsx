@@ -28,23 +28,23 @@ export default function AccountPage() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-gray-900">Home</Link>
+        <Link href="/" className="hover:text-white transition-colors">Home</Link>
         <span>/</span>
-        <span className="text-gray-900">My Account</span>
+        <span className="text-white">My Account</span>
       </nav>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         {/* Sidebar */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-6">
             {/* User Info */}
-            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-200">
-              <div className="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center">
-                <User className="w-8 h-8 text-primary-600" />
+            <div className="flex items-center gap-4 mb-6 pb-6 border-b border-gray-800">
+              <div className="w-16 h-16 bg-brand-500/20 rounded-full flex items-center justify-center">
+                <User className="w-8 h-8 text-brand-400" />
               </div>
               <div>
-                <h2 className="font-semibold text-gray-900">{user.name}</h2>
-                <p className="text-sm text-gray-500">{user.email}</p>
+                <h2 className="font-semibold text-white">{user.name}</h2>
+                <p className="text-sm text-gray-400">{user.email}</p>
               </div>
             </div>
 
@@ -54,13 +54,13 @@ export default function AccountPage() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition"
+                  className="flex items-center gap-3 px-3 py-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-xl transition-all"
                 >
                   <item.icon className="w-5 h-5" />
                   {item.label}
                 </Link>
               ))}
-              <button className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg transition">
+              <button className="w-full flex items-center gap-3 px-3 py-2 text-red-400 hover:bg-red-500/10 rounded-xl transition-all">
                 <LogOut className="w-5 h-5" />
                 Sign Out
               </button>
@@ -71,52 +71,52 @@ export default function AccountPage() {
         {/* Main Content */}
         <div className="lg:col-span-3">
           {/* Welcome */}
-          <div className="bg-gradient-to-r from-primary-600 to-primary-700 rounded-lg p-6 text-white mb-8">
+          <div className="bg-gradient-to-r from-brand-600 to-brand-500 rounded-2xl p-6 text-white mb-8 shadow-lg shadow-brand-500/30">
             <h1 className="text-2xl font-bold">Welcome back, {user.name}!</h1>
-            <p className="text-primary-100 mt-1">Member since {user.memberSince}</p>
+            <p className="text-brand-100 mt-1">Member since {user.memberSince}</p>
           </div>
 
           {/* Quick Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-              <p className="text-sm text-gray-500">Total Orders</p>
-              <p className="text-2xl font-bold text-gray-900">12</p>
+            <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-4">
+              <p className="text-sm text-gray-400">Total Orders</p>
+              <p className="text-2xl font-bold text-white">12</p>
             </div>
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-              <p className="text-sm text-gray-500">Wishlist Items</p>
-              <p className="text-2xl font-bold text-gray-900">5</p>
+            <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-4">
+              <p className="text-sm text-gray-400">Wishlist Items</p>
+              <p className="text-2xl font-bold text-white">5</p>
             </div>
-            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-              <p className="text-sm text-gray-500">Reward Points</p>
-              <p className="text-2xl font-bold text-gray-900">450</p>
+            <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-4">
+              <p className="text-sm text-gray-400">Reward Points</p>
+              <p className="text-2xl font-bold text-white">450</p>
             </div>
           </div>
 
           {/* Recent Orders */}
-          <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-            <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">Recent Orders</h2>
-              <Link href="/account/orders" className="text-sm text-primary-600 hover:text-primary-700">
+          <div className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800">
+            <div className="p-4 border-b border-gray-800 flex items-center justify-between">
+              <h2 className="text-lg font-semibold text-white">Recent Orders</h2>
+              <Link href="/account/orders" className="text-sm text-brand-400 hover:text-brand-300 transition-colors">
                 View all
               </Link>
             </div>
 
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-gray-800">
               {recentOrders.map((order) => (
                 <div key={order.id} className="p-4 flex items-center justify-between">
                   <div>
-                    <p className="font-medium text-gray-900">{order.id}</p>
+                    <p className="font-medium text-white">{order.id}</p>
                     <p className="text-sm text-gray-500">{order.date}</p>
                   </div>
                   <div className="text-right">
-                    <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full ${
+                    <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full ${
                       order.status === 'Delivered'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-blue-100 text-blue-700'
+                        ? 'bg-green-500/20 text-green-400'
+                        : 'bg-blue-500/20 text-blue-400'
                     }`}>
                       {order.status}
                     </span>
-                    <p className="text-sm font-medium text-gray-900 mt-1">${order.total.toFixed(2)}</p>
+                    <p className="text-sm font-medium text-white mt-1">${order.total.toFixed(2)}</p>
                   </div>
                 </div>
               ))}

@@ -45,16 +45,16 @@ export default function PaymentsPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-        <Link href="/" className="hover:text-gray-900">Home</Link>
+        <Link href="/" className="hover:text-white transition-colors">Home</Link>
         <span>/</span>
-        <Link href="/account" className="hover:text-gray-900">Account</Link>
+        <Link href="/account" className="hover:text-white transition-colors">Account</Link>
         <span>/</span>
-        <span className="text-gray-900">Payment Methods</span>
+        <span className="text-white">Payment Methods</span>
       </nav>
 
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Payment Methods</h1>
-        <button className="inline-flex items-center gap-2 bg-primary-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-primary-700 transition">
+        <h1 className="text-3xl font-bold text-white">Payment Methods</h1>
+        <button className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-4 py-2 rounded-xl font-medium hover:from-brand-500 hover:to-brand-400 transition-all shadow-lg shadow-brand-500/30">
           <Plus className="w-5 h-5" />
           Add Card
         </button>
@@ -62,10 +62,12 @@ export default function PaymentsPage() {
 
       {cards.length === 0 ? (
         <div className="text-center py-16">
-          <CreditCard className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">No payment methods</h2>
-          <p className="text-gray-500 mb-6">Add a card for faster checkout.</p>
-          <button className="inline-flex items-center gap-2 bg-primary-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-700 transition">
+          <div className="w-20 h-20 bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <CreditCard className="w-10 h-10 text-gray-500" />
+          </div>
+          <h2 className="text-xl font-semibold text-white mb-2">No payment methods</h2>
+          <p className="text-gray-400 mb-6">Add a card for faster checkout.</p>
+          <button className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-6 py-3 rounded-xl font-medium hover:from-brand-500 hover:to-brand-400 transition-all shadow-lg shadow-brand-500/30">
             <Plus className="w-5 h-5" />
             Add Card
           </button>
@@ -73,7 +75,7 @@ export default function PaymentsPage() {
       ) : (
         <div className="space-y-4">
           {cards.map((card) => (
-            <div key={card.id} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+            <div key={card.id} className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 p-6">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
                   {/* Card Visual */}
@@ -81,7 +83,7 @@ export default function PaymentsPage() {
                     {card.brand}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">
+                    <p className="font-medium text-white">
                       {card.brand} ending in {card.last4}
                     </p>
                     <p className="text-sm text-gray-500">
@@ -91,21 +93,21 @@ export default function PaymentsPage() {
                 </div>
                 <div className="flex items-center gap-3">
                   {card.isDefault && (
-                    <span className="inline-flex items-center gap-1 px-2 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded">
+                    <span className="inline-flex items-center gap-1 px-3 py-1 bg-brand-500/20 text-brand-400 text-xs font-medium rounded-full">
                       <Star className="w-3 h-3" />
                       Default
                     </span>
                   )}
-                  <button className="p-2 hover:bg-gray-100 rounded-lg transition">
-                    <MoreVertical className="w-5 h-5 text-gray-400" />
+                  <button className="p-2 hover:bg-gray-800 rounded-xl transition-all">
+                    <MoreVertical className="w-5 h-5 text-gray-500" />
                   </button>
                 </div>
               </div>
               {!card.isDefault && (
-                <div className="mt-4 pt-4 border-t border-gray-200">
+                <div className="mt-4 pt-4 border-t border-gray-800">
                   <button
                     onClick={() => setDefault(card.id)}
-                    className="text-sm text-primary-600 hover:text-primary-700 font-medium"
+                    className="text-sm text-brand-400 hover:text-brand-300 font-medium transition-colors"
                   >
                     Set as Default
                   </button>
