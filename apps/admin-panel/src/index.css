@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Modern gradient brand colors - Purple/Indigo theme */
+  --brand-50: #f5f3ff;
+  --brand-100: #ede9fe;
+  --brand-200: #ddd6fe;
+  --brand-300: #c4b5fd;
+  --brand-400: #a78bfa;
+  --brand-500: #8b5cf6;
+  --brand-600: #7c3aed;
+  --brand-700: #6d28d9;
+  --brand-800: #5b21b6;
+  --brand-900: #4c1d95;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(180deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  color: #e5e7eb;
+}
+
+@layer utilities {
+  /* Brand colors */
+  .text-brand-600 { color: var(--brand-600); }
+  .text-brand-700 { color: var(--brand-700); }
+  .text-brand-500 { color: var(--brand-500); }
+  .text-brand-400 { color: var(--brand-400); }
+  .text-brand-300 { color: var(--brand-300); }
+  .bg-brand-600 { background-color: var(--brand-600); }
+  .bg-brand-500 { background-color: var(--brand-500); }
+  .bg-brand-700 { background-color: var(--brand-700); }
+  .bg-brand-50 { background-color: var(--brand-50); }
+  .ring-brand-500 { --tw-ring-color: var(--brand-500); }
+  .border-brand-600 { border-color: var(--brand-600); }
+  .border-brand-500 { border-color: var(--brand-500); }
+  .shadow-brand-500\/50 { --tw-shadow-color: rgba(139, 92, 246, 0.5); }
+  .shadow-brand-500\/30 { --tw-shadow-color: rgba(139, 92, 246, 0.3); }
+
+  /* Primary alias */
+  .text-primary-600 { color: var(--brand-600); }
+  .text-primary-700 { color: var(--brand-700); }
+  .bg-primary-600 { background-color: var(--brand-600); }
+  .bg-primary-700 { background-color: var(--brand-700); }
+  .bg-primary-50 { background-color: var(--brand-50); }
+  .bg-primary-100 { background-color: var(--brand-100); }
+  .bg-primary-500 { background-color: var(--brand-500); }
+  .ring-primary-500 { --tw-ring-color: var(--brand-500); }
+  .border-primary-600 { border-color: var(--brand-600); }
+  .border-primary-500 { border-color: var(--brand-500); }
+  .focus\:ring-primary-500:focus { --tw-ring-color: var(--brand-500); }
+
+  /* Glass morphism effect */
+  .glass {
+    background: rgba(15, 15, 26, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(139, 92, 246, 0.1);
+  }
+
+  /* Modern card hover */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 50px -12px rgba(139, 92, 246, 0.25);
+    border-color: rgba(139, 92, 246, 0.3);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--brand-400) 0%, var(--brand-300) 50%, #f0abfc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Modern button */
+  .btn-primary {
+    background: linear-gradient(135deg, var(--brand-600) 0%, var(--brand-500) 100%);
+    transition: all 0.3s ease;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(135deg, var(--brand-700) 0%, var(--brand-600) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(139, 92, 246, 0.5);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--brand-400) 0%, var(--brand-600) 100%);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-500);
+}
+
+/* Animation keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+  50% { box-shadow: 0 0 30px 10px rgba(139, 92, 246, 0.2); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--brand-600);
+  color: white;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid var(--brand-500);
+  outline-offset: 2px;
+}

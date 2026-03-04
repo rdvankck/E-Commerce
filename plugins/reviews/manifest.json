@@ -1,0 +1,86 @@
+{
+  "name": "product-reviews",
+  "version": "1.0.0",
+  "displayName": "Product Reviews",
+  "description": "Customer reviews and ratings system with photo uploads, moderation tools, and review reminders.",
+  "author": "EcommerceSaaS",
+  "license": "MIT",
+  "dependencies": {
+    "core": "^1.0.0",
+    "plugins": []
+  },
+  "hooks": {
+    "events": [
+      "order.delivered",
+      "product.afterView"
+    ],
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/reviews/product/:productId",
+        "handler": "getProductReviews"
+      },
+      {
+        "method": "POST",
+        "path": "/reviews",
+        "handler": "createReview"
+      },
+      {
+        "method": "PUT",
+        "path": "/reviews/:id",
+        "handler": "updateReview"
+      },
+      {
+        "method": "DELETE",
+        "path": "/reviews/:id",
+        "handler": "deleteReview"
+      },
+      {
+        "method": "POST",
+        "path": "/reviews/:id/helpful",
+        "handler": "markHelpful"
+      },
+      {
+        "method": "GET",
+        "path": "/admin/reviews",
+        "handler": "getAdminReviews"
+      },
+      {
+        "method": "PUT",
+        "path": "/admin/reviews/:id/moderate",
+        "handler": "moderateReview"
+      }
+    ],
+    "adminPages": [
+      {
+        "path": "/reviews",
+        "component": "ReviewsAdmin",
+        "title": "Reviews",
+        "icon": "Star"
+      }
+    ],
+    "storefrontBlocks": [
+      {
+        "name": "product-reviews",
+        "component": "ProductReviews",
+        "location": "product.page.after",
+        "priority": 5
+      }
+    ]
+  },
+  "permissions": {
+    "database": true,
+    "externalApi": [],
+    "fileStorage": true,
+    "email": true
+  },
+  "backend": {
+    "main": "dist/index.js",
+    "hooks": "dist/hooks.js",
+    "routes": "dist/routes.js"
+  },
+  "frontend": {
+    "admin": "dist/admin.js",
+    "storefront": "dist/storefront.js"
+  }
+}

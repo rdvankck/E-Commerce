@@ -1,0 +1,78 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "displayName": "Blog & CMS",
+  "description": "Full-featured blog and content management system with categories, tags, SEO optimization, and scheduled publishing.",
+  "author": "EcommerceSaaS",
+  "license": "MIT",
+  "homepage": "https://github.com/ecommerce-saas/plugins/blog",
+  "dependencies": {
+    "core": "^1.0.0",
+    "plugins": []
+  },
+  "hooks": {
+    "events": [
+      "product.afterCreate",
+      "product.afterUpdate"
+    ],
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/blog/posts",
+        "handler": "getPosts"
+      },
+      {
+        "method": "GET",
+        "path": "/blog/posts/:slug",
+        "handler": "getPostBySlug"
+      },
+      {
+        "method": "POST",
+        "path": "/admin/blog/posts",
+        "handler": "createPost"
+      },
+      {
+        "method": "PUT",
+        "path": "/admin/blog/posts/:id",
+        "handler": "updatePost"
+      },
+      {
+        "method": "DELETE",
+        "path": "/admin/blog/posts/:id",
+        "handler": "deletePost"
+      }
+    ],
+    "adminPages": [
+      {
+        "path": "/blog",
+        "component": "BlogAdmin",
+        "title": "Blog",
+        "icon": "FileText"
+      }
+    ],
+    "storefrontBlocks": [
+      {
+        "name": "blog-posts",
+        "component": "BlogPosts",
+        "location": "product.page.after",
+        "priority": 10
+      }
+    ]
+  },
+  "permissions": {
+    "database": true,
+    "externalApi": [],
+    "fileStorage": true,
+    "email": false
+  },
+  "backend": {
+    "main": "dist/index.js",
+    "hooks": "dist/hooks.js",
+    "routes": "dist/routes.js"
+  },
+  "frontend": {
+    "admin": "dist/admin.js",
+    "storefront": "dist/storefront.js"
+  },
+  "migrations": "dist/migrations"
+}

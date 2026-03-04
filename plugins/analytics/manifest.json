@@ -1,0 +1,83 @@
+{
+  "name": "analytics",
+  "version": "1.0.0",
+  "displayName": "Analytics Dashboard Pro",
+  "description": "Advanced analytics with real-time dashboards, custom reports, conversion tracking, and export functionality.",
+  "author": "EcommerceSaaS",
+  "license": "MIT",
+  "dependencies": {
+    "core": "^1.0.0",
+    "plugins": []
+  },
+  "hooks": {
+    "events": [
+      "product.afterView",
+      "order.created",
+      "payment.received",
+      "cart.updated",
+      "checkout.started",
+      "customer.registered"
+    ],
+    "routes": [
+      {
+        "method": "GET",
+        "path": "/admin/analytics/dashboard",
+        "handler": "getDashboard"
+      },
+      {
+        "method": "GET",
+        "path": "/admin/analytics/reports",
+        "handler": "getReports"
+      },
+      {
+        "method": "POST",
+        "path": "/admin/analytics/reports",
+        "handler": "createReport"
+      },
+      {
+        "method": "GET",
+        "path": "/admin/analytics/reports/:id",
+        "handler": "getReport"
+      },
+      {
+        "method": "GET",
+        "path": "/admin/analytics/exports",
+        "handler": "getExports"
+      },
+      {
+        "method": "POST",
+        "path": "/admin/analytics/export",
+        "handler": "exportData"
+      },
+      {
+        "method": "POST",
+        "path": "/analytics/track",
+        "handler": "trackEvent"
+      }
+    ],
+    "adminPages": [
+      {
+        "path": "/analytics",
+        "component": "AnalyticsDashboard",
+        "title": "Analytics",
+        "icon": "BarChart3"
+      }
+    ],
+    "storefrontBlocks": []
+  },
+  "permissions": {
+    "database": true,
+    "externalApi": ["api.mixpanel.com", "api.segment.com"],
+    "fileStorage": true,
+    "email": false
+  },
+  "backend": {
+    "main": "dist/index.js",
+    "hooks": "dist/hooks.js",
+    "routes": "dist/routes.js"
+  },
+  "frontend": {
+    "admin": "dist/admin.js",
+    "storefront": "dist/storefront.js"
+  }
+}
