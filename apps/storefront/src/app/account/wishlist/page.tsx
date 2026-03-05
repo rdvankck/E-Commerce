@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Heart, ShoppingCart, Trash2 } from 'lucide-react';
+import { Heart, ShoppingCart, Trash2, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 const initialWishlistItems = [
@@ -27,29 +27,33 @@ export default function WishlistPage() {
         <span className="text-white">Wishlist</span>
       </nav>
 
-      <h1 className="text-3xl font-bold text-white mb-8">My Wishlist</h1>
+      <h1 className="text-2xl font-bold text-white mb-8">My Wishlist</h1>
 
       {items.length === 0 ? (
         <div className="text-center py-16">
-          <div className="w-20 h-20 bg-gray-800 rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <Heart className="w-10 h-10 text-gray-500" />
+          <div className="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-4">
+            <Heart className="w-8 h-8 text-gray-500" />
           </div>
           <h2 className="text-xl font-semibold text-white mb-2">Your wishlist is empty</h2>
           <p className="text-gray-400 mb-6">Save items you love to your wishlist.</p>
-          <Link href="/products" className="inline-flex items-center gap-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white px-6 py-3 rounded-xl font-medium hover:from-brand-500 hover:to-brand-400 transition-all shadow-lg shadow-brand-500/30">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 bg-brand-500 text-white px-6 py-3 rounded-lg font-medium hover:bg-brand-600 transition-colors"
+          >
             Browse Products
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {items.map((item) => (
-            <div key={item.id} className="bg-gray-900/80 backdrop-blur rounded-2xl border border-gray-800 overflow-hidden group hover:border-gray-700 transition-all">
+            <div key={item.id} className="bg-gray-800 rounded-lg overflow-hidden group">
               <Link href={`/products/${item.slug}`} className="block">
-                <div className="aspect-square bg-gray-800 relative overflow-hidden">
-                  <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-300" />
+                <div className="aspect-square bg-gray-700 relative overflow-hidden">
+                  <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
                   {!item.inStock && (
-                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                      <span className="text-white font-medium px-3 py-1 bg-gray-900/80 rounded-lg">Out of Stock</span>
+                    <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                      <span className="text-white font-medium text-sm bg-gray-900/80 px-3 py-1 rounded">Out of Stock</span>
                     </div>
                   )}
                 </div>
@@ -58,20 +62,20 @@ export default function WishlistPage() {
                 <Link href={`/products/${item.slug}`} className="font-medium text-white hover:text-brand-400 transition-colors">
                   {item.name}
                 </Link>
-                <p className="text-lg font-bold text-brand-400 mt-1">${item.price.toFixed(2)}</p>
+                <p className="text-lg font-bold text-white mt-1">${item.price.toFixed(2)}</p>
                 <div className="flex gap-2 mt-3">
                   <button
                     disabled={!item.inStock}
-                    className="flex-1 py-2 bg-gradient-to-r from-brand-600 to-brand-500 text-white rounded-xl font-medium hover:from-brand-500 hover:to-brand-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="flex-1 py-2 bg-brand-500 text-white rounded-lg font-medium hover:bg-brand-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 text-sm"
                   >
                     <ShoppingCart className="w-4 h-4" />
                     Add to Cart
                   </button>
                   <button
                     onClick={() => removeItem(item.id)}
-                    className="p-2 bg-gray-800 border border-gray-700 rounded-xl hover:bg-red-500/10 hover:border-red-500/50 transition-all"
+                    className="p-2 bg-gray-700 rounded-lg hover:bg-red-500/20 transition-colors"
                   >
-                    <Trash2 className="w-5 h-5 text-gray-400 hover:text-red-400" />
+                    <Trash2 className="w-4 h-4 text-gray-400" />
                   </button>
                 </div>
               </div>
