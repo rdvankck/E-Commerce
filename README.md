@@ -92,7 +92,7 @@ pnpm --filter storefront exec playwright test
 └─────────────┘ └───────┘ └───────────────┘
 ```
 
-## Authors
+## Author
 
 - [rdvankck](https://github.com/rdvankck)
 
